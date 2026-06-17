@@ -6,188 +6,20 @@ import {
   FaExternalLinkAlt,
   FaArrowDown,
 } from "react-icons/fa";
-import {
-  SiFigma,
-  SiReact,
-  SiJavascript,
-  SiHtml5,
-  SiCss,
-  SiTailwindcss,
-  SiCanva,
-  SiGit,
-  SiPython,
-  SiC,
-} from "react-icons/si";
-import Profile from "./assets/image.png";
+import DATA from './data/Data'
+import Reveal from "./components/Reveal";
+import ProjectTile from "./components/ProjectTile"
+import Profile from "./assets/heroImage.png";
 import Heart from "./assets/heart.png";
-import logo from "./assets/logo.png"
+import logo from "./assets/logo.png";
 
 /* ---------------------------------------------------------------------- */
 /* Data — pulled directly from the resume                                  */
 /* ---------------------------------------------------------------------- */
 
-const DATA = {
-  name: "Bijay Kumar Chaudhary",
-  initials: "BKC",
-  role: "Frontend Developer · UI/UX & Graphic Designer",
-  email: "bijaykuc45@gmail.com",
-  github: "https://github.com/bijaychaudhary49",
-  linkedin: "https://www.linkedin.com/in/bijaychaudhary/",
-  experience: [
-    {
-      role: "Frontend Developer",
-      org: "Sajilo Digital Pvt. Ltd., Butwal",
-      period: "Nov 2024 — Present",
-    },
-    {
-      role: "Assistant Teacher — CS",
-      org: "Future Light Academy",
-      period: "2023 — 2025",
-    },
-  ],
-  leadership: [
-    {
-      role: "Executive Member, BMC IT Club",
-      org: "Bhairahawa Multiple Campus",
-      period: "2023 — Present",
-    },
-    {
-      role: "Lead Organizer, Code Olympiad 2081",
-      org: "District-level DSA contest",
-      period: "2081 B.S.",
-    },
-  ],
-  software: [
-    { Icon: SiFigma, label: "Figma" },
-    { Icon: SiReact, label: "React" },
-    { Icon: SiJavascript, label: "JavaScript" },
-    { Icon: SiHtml5, label: "HTML5" },
-    { Icon: SiCss, label: "CSS3" },
-    { Icon: SiTailwindcss, label: "Tailwind" },
-    { Icon: SiCanva, label: "Canva" },
-    { Icon: SiGit, label: "Git" },
-    { Icon: SiPython, label: "Python" },
-    { Icon: SiC, label: "C" },
-  ],
-  projects: [
-    {
-      n: "01",
-      title: "Sushila Fancy",
-      tag: "E-Commerce",
-      desc: "Clothing storefront with catalogue, cart & responsive layout.",
-      stack: ["ReactJS", "Tailwind"],
-      bg: "#4BB8FA",
-      text: "#1A1A1A",
-      link: "https://www.sushilafancy.com.np/",
-    },
-    {
-      n: "02",
-      title: "Code for Change Nepal",
-      tag: "NGO Website",
-      desc: "Accessible, fast, clean information architecture for an NGO.",
-      stack: ["Accessibility", "Performance"],
-      bg: "#D9CBA6",
-      text: "#1A1A1A",
-      link: "https://www.codeforchangenepal.com/",
-    },
-    {
-      n: "03",
-      title: "Sajilo Sahayata",
-      tag: "Dashboard",
-      desc: "Real-time disaster response coordination & resource tracking.",
-      stack: ["Real-time UI", "Dashboard"],
-      bg: "#9CA77A",
-      text: "#F6EFE2",
-      link: "https://sajilo-sahayata.onrender.com/",
-    },
-    {
-      n: "04",
-      title: "EduVibe",
-      tag: "E-Learning",
-      desc: "E-learning SPA with course catalogue & progress dashboard.",
-      stack: ["SPA", "Vercel"],
-      bg: "#E0876B",
-      text: "#F6EFE2",
-      link: "e-learning-eight-chi.vercel.app",
-    },
-    {
-      n: "05",
-      title: "Code Olympiad 2081",
-      tag: "Event Platform",
-      desc: "Registration portal for a district-level DSA competition.",
-      stack: ["Event", "BMC IT Club"],
-      bg: "#8E97C9",
-      text: "#F6EFE2",
-      link: "https://codeolympiad2081.netlify.app/",
-    },
-  ],
-  education: [
-    {
-      degree: "BSc. Computer Science & IT",
-      org: "Bhairahawa Multiple Campus, Rupandehi",
-      period: "2021 — 2026",
-    },
-    {
-      degree: "Higher Secondary (+2 Science)",
-      org: "Manimukunda Secondary School",
-      period: "2019 — 2021 · GPA 3.36",
-    },
-    {
-      degree: "Secondary Education (SEE)",
-      org: "Future Light Academy",
-      period: "2009 — 2019 · GPA 3.65",
-    },
-  ],
-};
 
-/* ---------------------------------------------------------------------- */
-/* Reveal — fade + rise on scroll into view                                 */
-/* ---------------------------------------------------------------------- */
 
-function Reveal({ children, className = "", delay = 0 }) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduced) {
-      setVisible(true);
-      return;
-    }
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            obs.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0px)" : "translateY(22px)",
-        transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}s, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
-        willChange: "opacity, transform",
-      }}
-    >
-      {children}
-    </div>
-  );
-}
 
 /* ---------------------------------------------------------------------- */
 /* JitterWord — sticker-pile chunky title letters                          */
@@ -224,6 +56,7 @@ function AvatarMark() {
         <img
           src={Profile}
           alt="Profile"
+          className="drop-shadow-2xl drop-shadow-[#4BB8FA]/50 "
           style={{
             width: "100%",
             height: "100%",
@@ -368,7 +201,7 @@ function IdBadge() {
 
         {/* Mini Barcode Graphic for Realism */}
         <div
-          className="flex justify-center gap-[2px] mt-3 h-3 opacity-40 mixing-blend-multiply"
+          className="flex justify-center gap-0.5 mt-3 h-3 opacity-40 mixing-blend-multiply"
           aria-hidden="true"
         >
           {[2, 4, 1, 3, 1, 4, 2, 3, 1, 2, 4, 1].map((w, i) => (
@@ -383,153 +216,7 @@ function IdBadge() {
   );
 }
 
-/* ---------------------------------------------------------------------- */
-/* ProjectTile — bold color block with 3D tilt on hover                     */
-/* ---------------------------------------------------------------------- */
 
-function ProjectTile({ project, index }) {
-  const cardRef = useRef(null);
-  const [transform, setTransform] = useState(
-    "perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)",
-  );
-  const [lift, setLift] = useState(false);
-
-  function handleMove(e) {
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
-    const rx = (0.5 - py) * 10;
-    const ry = (px - 0.5) * 12;
-    setTransform(
-      `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(16px)`,
-    );
-    setLift(true);
-  }
-
-  function handleLeave() {
-    setTransform(
-      "perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)",
-    );
-    setLift(false);
-  }
-
-  return (
-    <Reveal delay={index * 0.06} className="h-full">
-      <div
-        ref={cardRef}
-        onMouseMove={handleMove}
-        onMouseLeave={handleLeave}
-        className="rounded-2xl p-6 h-full flex flex-col justify-between min-h-96"
-        style={{
-          backgroundColor: project.bg,
-          color: project.text,
-          border: "2.5px solid #1A1A1A",
-          transform,
-          boxShadow: lift
-            ? "14px 18px 0 rgba(26,26,26,0.18)"
-            : "6px 6px 0 rgba(26,26,26,0.12)",
-          transition:
-            "transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s ease",
-          transformStyle: "preserve-3d",
-        }}
-      >
-        <div>
-          <div className="flex items-start justify-between gap-3 mb-6">
-            <span className="font-display text-4xl font-bold opacity-90">
-              {project.n}
-            </span>
-            <a href={project.link} target="_blank">
-              <FaExternalLinkAlt
-                className="hover:-translate-y-0.5 hover:translate-x-0.5 hover:scale-110 transition ease-in"
-                style={{ opacity: 0.8 }}
-              />
-            </a>
-          </div>
-          <div
-            className="rounded-xl p-3 mb-6"
-            style={{
-              backgroundColor: "rgba(0,0,0,0.08)",
-              border: `1.5px solid ${project.text}33`,
-            }}
-          >
-            <div className="flex items-center gap-1.5 mb-3">
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  backgroundColor: project.text,
-                  opacity: 0.6,
-                }}
-              />
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  backgroundColor: project.text,
-                  opacity: 0.6,
-                }}
-              />
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  backgroundColor: project.text,
-                  opacity: 0.6,
-                }}
-              />
-            </div>
-            <div
-              style={{
-                height: 7,
-                width: "70%",
-                backgroundColor: project.text,
-                opacity: 0.25,
-                borderRadius: 4,
-                marginBottom: 6,
-              }}
-            />
-            <div
-              style={{
-                height: 7,
-                width: "45%",
-                backgroundColor: project.text,
-                opacity: 0.25,
-                borderRadius: 4,
-              }}
-            />
-          </div>
-        </div>
-        <div>
-          <span className="font-display text-xs uppercase tracking-widest opacity-75">
-            {project.tag}
-          </span>
-          <h3 className="font-display text-xl font-bold mt-1 mb-2">
-            {project.title}
-          </h3>
-          <p className="text-sm leading-relaxed mb-4 opacity-90">
-            {project.desc}
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {project.stack.map((s) => (
-              <span
-                key={s}
-                className="font-display text-xs px-2.5 py-1 rounded-full"
-                style={{ backgroundColor: "rgba(0,0,0,0.1)" }}
-              >
-                {s}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </Reveal>
-  );
-}
 
 /* ---------------------------------------------------------------------- */
 /* Main component                                                           */
@@ -560,39 +247,7 @@ export default function Portfolio() {
       className="bkc-portfolio"
       style={{ backgroundColor: "#F6EFE2", color: "#1A1A1A" }}
     >
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-        html{scroll-behavior:smooth}
-        .bkc-portfolio { font-family: 'Inter', -apple-system, sans-serif; }
-        .bkc-portfolio .font-display { font-family: 'Fredoka', sans-serif; }
-        .bkc-portfolio .font-mono { font-family: 'JetBrains Mono', monospace; }
-        .bkc-portfolio section[id] { scroll-margin-top: 84px; }
-        .bkc-portfolio .no-scrollbar::-webkit-scrollbar { display: none; }
-        .bkc-portfolio .no-scrollbar { scrollbar-width: none; }
-        .bkc-portfolio :focus-visible { outline: 2px solid #4BB8FA; outline-offset: 3px; border-radius: 4px; }
-        .bkc-portfolio .btn-primary { background-color: #1A1A1A; color: #F6EFE2; transition: background-color 0.25s ease, transform 0.25s ease; }
-        .bkc-portfolio .btn-primary:hover { background-color: #4BB8FA; color: #1A1A1A; transform: translateY(-2px); }
-        .bkc-portfolio .btn-outline { border: 2px solid #1A1A1A; color: #1A1A1A; transition: background-color 0.25s ease, transform 0.25s ease; }
-        .bkc-portfolio .btn-outline:hover { background-color: #1A1A1A; color: #F6EFE2; transform: translateY(-2px); }
-        .bkc-portfolio .nav-link { color: #1A1A1A; opacity: 0.7; transition: opacity 0.2s ease; }
-        .bkc-portfolio .nav-link:hover { opacity: 1; }
-        .bkc-portfolio .soft-chip { transition: transform 0.2s ease, background-color 0.2s ease; }
-        .bkc-portfolio .soft-chip:hover { transform: translateY(-3px); background-color: #4BB8FA !important; color: #1A1A1A; }
-        @keyframes bkc-bounce { 0%,100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(8px); opacity: 1; } }
-        @keyframes bkc-float-a { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-8px) rotate(8deg); } }
-        @keyframes bkc-float-b { 0%,100% { transform: translateY(0) rotate(12deg); } 50% { transform: translateY(7px) rotate(0deg); } }
-        @keyframes bkc-float-c { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-        @keyframes bkc-sway-k { 0%,100% { transform: rotate(-7deg); } 50% { transform: rotate(7deg); } }
-        .bkc-portfolio .scroll-cue { animation: bkc-bounce 2s ease-in-out infinite; }
-        .bkc-portfolio .bkc-float-1 { animation: bkc-float-a 4.5s ease-in-out infinite; }
-        .bkc-portfolio .bkc-float-2 { animation: bkc-float-b 5.2s ease-in-out infinite; }
-        .bkc-portfolio .bkc-float-3 { animation: bkc-float-c 3.8s ease-in-out infinite; }
-        .bkc-portfolio .bkc-sway { animation: bkc-sway-k 5s ease-in-out infinite; transform-origin: top center; }
-        @media (prefers-reduced-motion: reduce) {
-          .bkc-portfolio .scroll-cue, .bkc-portfolio .bkc-float-1, .bkc-portfolio .bkc-float-2,
-          .bkc-portfolio .bkc-float-3, .bkc-portfolio .bkc-sway { animation: none; }
-        }
-      `}</style>
+     
 
       {/* Nav */}
       <header
@@ -617,7 +272,7 @@ export default function Portfolio() {
             style={{ color: "#1A1A1A" }}
           >
             <div
-            className="overflow-hidden group"
+              className="overflow-hidden group"
               style={{
                 position: "absolute",
                 inset: 0,
@@ -627,9 +282,13 @@ export default function Portfolio() {
                 boxShadow: "10px 10px 0 rgba(26,26,26,0.10)",
               }}
             >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <img src={logo} alt="logo" className="group-hover:scale-110 transition ease-in-out duration-300"/>
-            </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <img
+                  src={logo}
+                  alt="logo"
+                  className="group-hover:scale-110 transition ease-in-out duration-300"
+                />
+              </div>
             </div>
           </a>
           <nav className="flex items-center gap-5">
@@ -714,8 +373,8 @@ export default function Portfolio() {
 
         <AvatarMark />
         <p
-          className="font-display text-sm sm:text-xl uppercase tracking-widest mb-12"
-          style={{ color: "#4BB8FA", cursor: `url(${Heart}) 16 16, auto`, }}
+          className="font-display text-sm sm:text-2xl z-10 uppercase tracking-widest pb-10 pt-2"
+          style={{ color: "#4BB8FA", cursor: `url(${Heart}) 16 16, auto` }}
         >
           {DATA.name}
         </p>

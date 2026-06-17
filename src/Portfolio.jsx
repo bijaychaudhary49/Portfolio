@@ -20,6 +20,7 @@ import {
 } from "react-icons/si";
 import Profile from "./assets/image.png";
 import Heart from "./assets/heart.png";
+import logo from "./assets/logo.png"
 
 /* ---------------------------------------------------------------------- */
 /* Data — pulled directly from the resume                                  */
@@ -229,6 +230,7 @@ function AvatarMark() {
             objectFit: "contain", // Change to "cover" if you don't want empty spaces around the image
             objectPosition: "center",
             display: "block",
+            cursor: `url(${Heart}) 16 16, auto`,
           }}
         />
 
@@ -615,6 +617,7 @@ export default function Portfolio() {
             style={{ color: "#1A1A1A" }}
           >
             <div
+            className="overflow-hidden group"
               style={{
                 position: "absolute",
                 inset: 0,
@@ -623,19 +626,10 @@ export default function Portfolio() {
                 border: "3px solid #1A1A1A",
                 boxShadow: "10px 10px 0 rgba(26,26,26,0.10)",
               }}
-            />{" "}
+            >
             <div className="absolute inset-0 flex items-center justify-center">
-              <span
-                className="font-display"
-                style={{
-                  fontSize: 16,
-                  fontWeight: 700,
-                  color: "#053d5f",
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                {DATA.initials}
-              </span>
+              <img src={logo} alt="logo" className="group-hover:scale-110 transition ease-in-out duration-300"/>
+            </div>
             </div>
           </a>
           <nav className="flex items-center gap-5">
@@ -673,7 +667,7 @@ export default function Portfolio() {
               transform: "rotate(10deg)",
             }}
           >
-            '23
+            '49
           </span>
           <h1
             className="font-display font-bold leading-[0.8]"
@@ -721,7 +715,7 @@ export default function Portfolio() {
         <AvatarMark />
         <p
           className="font-display text-sm sm:text-xl uppercase tracking-widest mb-12"
-          style={{ color: "#4BB8FA" }}
+          style={{ color: "#4BB8FA", cursor: `url(${Heart}) 16 16, auto`, }}
         >
           {DATA.name}
         </p>
@@ -1074,28 +1068,36 @@ export default function Portfolio() {
                   label: DATA.email,
                   href: `mailto:${DATA.email}`,
                 },
-
-                { Icon: FaGithub, label: "GitHub", href: DATA.github },
-                { Icon: FaLinkedin, label: "LinkedIn", href: DATA.linkedin },
+                {
+                  Icon: FaGithub,
+                  label: "GitHub",
+                  href: DATA.github,
+                },
+                {
+                  Icon: FaLinkedin,
+                  label: "LinkedIn",
+                  href: DATA.linkedin,
+                },
               ].map(({ Icon, label, href }) => (
                 <a
                   key={label}
                   href={href}
-                  className="flex items-center gap-2 px-5 py-3 rounded-full text-sm hover:-translate-y-0.5 border-2 border-[rgba(246,239,226,0.3)] hover:border-gray-100 transition-all ease-in duration-200"
-                  style={{
-                    color: "#F6EFE2",
-                    transition: "background-color 0.25s ease",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor =
-                      "rgba(246,239,226,0.12)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor = "transparent")
-                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                  flex items-center gap-2
+                  px-5 py-3
+                  rounded-full
+                  text-sm
+                  border-2 border-[rgba(246,239,226,0.3)]
+                  hover:border-[rgba(246,239,226,0.8)]                  
+                  hover:-translate-y-0.5
+                  transition-all duration-300 ease-in-out
+                "
+                  style={{ color: "#F6EFE2" }}
                 >
                   <Icon size={14} />
-                  {label}
+                  <span>{label}</span>
                 </a>
               ))}
             </div>

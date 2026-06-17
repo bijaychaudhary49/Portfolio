@@ -16,7 +16,7 @@ I am a Frontend Developer and UI/UX & Graphic Designer with experience building 
 
 ## Screenshots
 
-![Portfolio screenshot](src/assets/Screenshot%202026-06-17%20225628.png)
+![Portfolio screenshot](src/assets/Screenshot.png)
 
 ## Built With
 

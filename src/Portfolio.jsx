@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+
+// Icons
 import {
   FaEnvelope,
   FaGithub,
@@ -6,216 +8,21 @@ import {
   FaExternalLinkAlt,
   FaArrowDown,
 } from "react-icons/fa";
-import DATA from './data/Data'
+
+// Data
+import DATA from "./data/Data";
+
+// Components
 import Reveal from "./components/Reveal";
-import ProjectTile from "./components/ProjectTile"
+import AvatarMark from "./components/AvatarMark";
+import ProjectTile from "./components/ProjectTile";
+import JitterWord from "./components/JitterWord";
+import IdBadge from "./components/IdBage";
+
+// Images
 import Profile from "./assets/heroImage.png";
 import Heart from "./assets/heart.png";
 import logo from "./assets/logo.png";
-
-/* ---------------------------------------------------------------------- */
-/* Data — pulled directly from the resume                                  */
-/* ---------------------------------------------------------------------- */
-
-
-
-
-
-/* ---------------------------------------------------------------------- */
-/* JitterWord — sticker-pile chunky title letters                          */
-/* ---------------------------------------------------------------------- */
-
-function JitterWord({ text, jitter, accentIndex, accentColor, style }) {
-  return (
-    <span style={{ display: "inline-flex", ...style }}>
-      {text.split("").map((ch, i) => (
-        <span
-          key={i}
-          style={{
-            display: "inline-block",
-            transform: `rotate(${jitter[i] ? jitter[i].r : 0}deg) translateY(${jitter[i] ? jitter[i].y : 0}px)`,
-            marginRight: i === text.length - 1 ? 0 : "-0.05em",
-            color: i === accentIndex ? accentColor : "inherit",
-          }}
-        >
-          {ch}
-        </span>
-      ))}
-    </span>
-  );
-}
-
-/* ---------------------------------------------------------------------- */
-/* AvatarMark — abstract monogram blob, replaces a custom illustration      */
-/* ---------------------------------------------------------------------- */
-
-function AvatarMark() {
-  return (
-    <div className="relative h-75">
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 mx-auto w-xl h-100">
-        <img
-          src={Profile}
-          alt="Profile"
-          className="drop-shadow-2xl drop-shadow-[#4BB8FA]/50 "
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "contain", // Change to "cover" if you don't want empty spaces around the image
-            objectPosition: "center",
-            display: "block",
-            cursor: `url(${Heart}) 16 16, auto`,
-          }}
-        />
-
-        <div
-          className="bkc-float-1"
-          style={{
-            position: "absolute",
-            top: -50,
-            right: 40,
-            width: 32,
-            height: 32,
-            borderRadius: "50%",
-            background: "#4BB8FA",
-            border: "2.5px solid #1A1A1A",
-          }}
-        />
-
-        <div
-          className="bkc-float-2"
-          style={{
-            position: "absolute",
-            bottom: -8,
-            left: 100,
-            width: 28,
-            height: 28,
-            borderRadius: 9,
-            background: "#E0876B",
-            border: "2.5px solid #1A1A1A",
-            transform: "rotate(12deg)",
-          }}
-        />
-
-        <div
-          className="bkc-float-3 font-display"
-          style={{
-            position: "absolute",
-            top: "42%",
-            left: 0,
-            fontSize: 26,
-            fontWeight: 700,
-            color: "#1A1A1A",
-          }}
-        >
-          +
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ---------------------------------------------------------------------- */
-/* IdBadge — flat lanyard prop with abstract monogram instead of a photo    */
-/* ---------------------------------------------------------------------- */
-
-function IdBadge() {
-  return (
-    <div
-      className="hidden xl:block relative"
-      style={{
-        transform: "rotate(-7deg)",
-        filter: "drop-shadow(6px 6px 0px rgba(26,26,26,0.15))", // Smoother shadow over rotated child elements
-      }}
-    >
-      {/* The Lanyard/Strap */}
-      <div
-        style={{
-          width: 16,
-          height: 100,
-          background: "#4BB8FA",
-          margin: "0 auto",
-          borderRadius: "4px 4px 0 0",
-          border: "2.5px solid #1A1A1A",
-          borderBottom: "none",
-        }}
-      />
-
-      {/* The ID Card Frame */}
-      <div
-        className="bkc-sway"
-        style={{
-          width: 220,
-          margin: "0 auto",
-          background: "#F6EFE2",
-          border: "2.5px solid #1A1A1A",
-          borderRadius: 16,
-          padding: "16px 12px 12px 12px",
-          position: "relative",
-        }}
-      >
-        {/* The Punch Hole / Clip Slot */}
-        <div
-          style={{
-            width: 24,
-            height: 8,
-            background: "#1A1A1A", // Dark cut-out look
-            borderRadius: 99,
-            margin: "-4px auto 16px", // Pulled up slightly closer to the top border
-            border: "1.5px solid #1A1A1A",
-          }}
-        />
-
-        {/* Profile Photo Area */}
-        <div
-          style={{
-            width: "100%",
-            height: 200,
-            borderRadius: 8,
-            background: "linear-gradient(135deg, #4BB8FA, #D9CBA6)",
-            border: "2.5px solid #1A1A1A",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "inset 0 4px 0 rgba(255,255,255,0.2)",
-          }}
-        >
-          {/* hello */}
-          <img src={Profile} alt="" className="h-50" />
-        </div>
-
-        {/* ID Text / Details */}
-        <div className="text-center mt-3">
-          <p
-            className="font-display font-bold uppercase"
-            style={{ fontSize: 11, letterSpacing: "0.05em", color: "#1A1A1A" }}
-          >
-            BIJAY
-          </p>
-          <p
-            className="font-display mt-0.5 opacity-70"
-            style={{ fontSize: 9, letterSpacing: "0.08em", color: "#1A1A1A" }}
-          >
-            FRONTEND DEV
-          </p>
-        </div>
-
-        {/* Mini Barcode Graphic for Realism */}
-        <div
-          className="flex justify-center gap-0.5 mt-3 h-3 opacity-40 mixing-blend-multiply"
-          aria-hidden="true"
-        >
-          {[2, 4, 1, 3, 1, 4, 2, 3, 1, 2, 4, 1].map((w, i) => (
-            <div
-              key={i}
-              style={{ width: w, height: "100%", background: "#1A1A1A" }}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 
 
 /* ---------------------------------------------------------------------- */
@@ -247,8 +54,6 @@ export default function Portfolio() {
       className="bkc-portfolio"
       style={{ backgroundColor: "#F6EFE2", color: "#1A1A1A" }}
     >
-     
-
       {/* Nav */}
       <header
         className={`fixed left-0 w-full z-50 transition-all ease-in duration-200 ${scrolled ? "top-5" : "top-0"}`}

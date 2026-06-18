@@ -8,6 +8,10 @@ import {
   FaExternalLinkAlt,
   FaArrowDown,
 } from "react-icons/fa";
+import { FaRegUser } from "react-icons/fa";
+import { RiInformation2Line } from "react-icons/ri";
+import { RiContactsLine } from "react-icons/ri";
+import { MdOutlineWorkOutline } from "react-icons/md";
 
 // Data
 import DATA from "./data/Data";
@@ -23,7 +27,7 @@ import IdBadge from "./components/IdBage";
 import Profile from "./assets/heroImage.png";
 import Heart from "./assets/heart.png";
 import logo from "./assets/logo.png";
-
+import { Icon } from "lucide-react";
 
 /* ---------------------------------------------------------------------- */
 /* Main component                                                           */
@@ -43,27 +47,27 @@ export default function Portfolio() {
   }, []);
 
   const navLinks = [
-    { href: "#intro", label: "About" },
-    { href: "#info", label: "Info" },
-    { href: "#work", label: "Work" },
-    { href: "#contact", label: "Contact" },
+    { href: "#intro", label: "About", icon: <FaRegUser /> },
+    { href: "#info", label: "Info", icon: <RiInformation2Line /> },
+    { href: "#work", label: "Work", icon: <MdOutlineWorkOutline /> },
+    { href: "#contact", label: "Contact", icon: <RiContactsLine /> },
   ];
 
   return (
     <div
-      className="bkc-portfolio"
+      className="bkc-portfolio overflow-hidden"
       style={{ backgroundColor: "#F6EFE2", color: "#1A1A1A" }}
     >
       {/* Nav */}
       <header
-        className={`fixed left-0 w-full z-50 transition-all ease-in duration-200 ${scrolled ? "top-5" : "top-0"}`}
+        className={`fixed left-0 w-full z-50 max-md:px-2 transition-all ease-in duration-200 ${scrolled ? "top-5" : "top-0"}`}
       >
         <div
-          className="max-w-7xl mx-auto px-6 sm:px-10 h-16 flex items-center justify-between"
+          className="max-w-7xl mx-auto px-2 h-16 flex items-center justify-between rounded-full"
           style={{
             backgroundColor: "transparent",
             backdropFilter: scrolled ? "blur(10px)" : "none",
-            borderRadius: "20px",
+          
             borderBottom: scrolled
               ? "2px solid #1A1A1A"
               : "2px solid transparent",
@@ -97,15 +101,17 @@ export default function Portfolio() {
             </div>
           </a>
           <nav className="flex items-center gap-5">
-            {navLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="nav-link font-display text-xs uppercase tracking-widest whitespace-nowrap"
-              >
-                {l.label}
-              </a>
-            ))}
+            <div className="hidden md:flex gap-5">
+              {navLinks.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className="nav-link font-display text-xs uppercase tracking-widest whitespace-nowrap"
+                >
+                  {l.label}
+                </a>
+              ))}
+            </div>
             <a
               href={`mailto:${DATA.email}`}
               className="btn-primary font-display text-xs uppercase tracking-widest px-7 py-3 rounded-full whitespace-nowrap"
@@ -115,6 +121,20 @@ export default function Portfolio() {
           </nav>
         </div>
       </header>
+
+      {/* Mobile view */}
+      <nav className="md:hidden fixed bottom-1 w-full left-1/2 -translate-x-1/2 border-b-2 max-w-96 border-t-2 border-t-white/60 flex justify-between z-50 px-4 py-3 bg-[#F6EFE2]/20 backdrop-blur-sm border-[#1A1A1A] rounded-full">
+        {navLinks.map((l) => (
+          <a
+            key={l.href}
+            href={l.href}
+            className="flex flex-col items-center gap-1 nav-link font-display text-[10px] uppercase font-bold tracking-widest whitespace-nowrap"
+          >
+            <p className="text-xl">{l.icon}</p>
+            <p> {l.label}</p>
+          </a>
+        ))}
+      </nav>
 
       {/* Cover / Hero */}
       <section
@@ -134,7 +154,7 @@ export default function Portfolio() {
             '49
           </span>
           <h1
-            className="font-display font-bold leading-[0.8]"
+            className="font-display font-bold leading-[0.8] max-md:hidden"
             style={{
               fontSize: "clamp(4rem,14vw,8rem)",
               letterSpacing: "0.01em",
@@ -153,38 +173,59 @@ export default function Portfolio() {
                 { r: 6, y: -12 }, // I
                 { r: -8, y: 12 }, // O
               ]}
+              accentIndex={5}
+              accentColor="#4BB8FA"
             />
           </h1>
 
-          {/* <h1
-            className="font-display font-bold leading-[0.8] -mt-6"
+          <h1
+            className="font-display font-bold leading-[0.8] md:hidden"
             style={{
-              fontSize: "clamp(4rem,14vw,8rem)",
-              letterSpacing: "-0.08em",
+              fontSize: "clamp(6.5rem,15vw,13rem)",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            <JitterWord
+              text="PORT"
+              jitter={[
+                { r: -6, y: 0 },
+                { r: 5, y: -10 },
+                { r: -4, y: 6 },
+                { r: 7, y: -4 },
+              ]}
+            />
+          </h1>
+          <h1
+            className="font-display font-bold leading-[0.8] md:hidden"
+            style={{
+              fontSize: "clamp(6.5rem,15vw,13rem)",
+              letterSpacing: "-0.02em",
             }}
           >
             <JitterWord
               text="FOLIO"
               jitter={[
-                { r: -10, y: -8 }, // F
-                { r: 8, y: 18 },   // O
-                { r: -4, y: 6 },   // L
-                { r: 6, y: -12 },  // I
-                { r: -8, y: 12 },  // O
+                { r: 5, y: -6 },
+                { r: -7, y: 8 },
+                { r: 3, y: -4 },
+                { r: -5, y: 5 },
+                { r: 6, y: -8 },
               ]}
+              accentIndex={1}
+              accentColor="#4BB8FA"
             />
-          </h1> */}
+          </h1>
         </div>
 
         <AvatarMark />
         <p
-          className="font-display text-sm sm:text-2xl z-10 uppercase tracking-widest pb-10 pt-2"
+          className="font-display text-sm sm:text-2xl z-10 uppercase tracking-widest  pt-2"
           style={{ color: "#4BB8FA", cursor: `url(${Heart}) 16 16, auto` }}
         >
           {DATA.name}
         </p>
         <p
-          className="font-display text-xs uppercase tracking-widest mt-10 mb-8"
+          className="font-display text-xs uppercase tracking-widest pb-16"
           style={{ color: "rgba(26,26,26,0.6)" }}
         >
           {DATA.role}
@@ -205,7 +246,7 @@ export default function Portfolio() {
           </a>
         </div>
 
-        <div className="flex items-center justify-center gap-2 mt-16 scroll-cue">
+        <div className="flex items-center justify-center gap-2 pt-7 md:mt-10 scroll-cue">
           <span
             className="font-display text-xs uppercase tracking-widest"
             style={{ color: "rgba(26,26,26,0.5)" }}

@@ -8,14 +8,12 @@ import Heart from "../assets/heart.png";
 export default function AvatarMark() {
   return (
     <div className="relative h-75">
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 mx-auto w-xl h-100">
+      <div className="absolute max-md:-top-6 md:bottom-0 left-1/2 -translate-x-1/2 mx-auto w-xl h-90 md:h-100">
         <img
           src={Profile}
           alt="Profile"
-          className="drop-shadow-2xl drop-shadow-[#4BB8FA]/50 "
+          className="drop-shadow-2xl h-full w-full max-md:h-80 drop-shadow-[#4BB8FA]/50 "
           style={{
-            width: "100%",
-            height: "100%",
             objectFit: "contain", // Change to "cover" if you don't want empty spaces around the image
             objectPosition: "center",
             display: "block",

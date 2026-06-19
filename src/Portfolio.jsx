@@ -32,6 +32,8 @@ import CountUp from "./components/CountUp";
 import StaggeredTags from "./components/StaggeredTags";
 import ParallaxShapes from "./components/ParallaxShapes";
 import DrawLine from "./components/DrawLine";
+import ScrollPuller from "./components/ScrollPuller";
+import Marquee from "./components/Marquee";
 
 import {
   motion,
@@ -149,6 +151,7 @@ export default function Portfolio() {
       </AnimatePresence>
 
       <Cursor />
+      <ScrollPuller />
 
       {/* Nav */}
       <header
@@ -225,7 +228,7 @@ export default function Portfolio() {
             key={l.href}
             href={l.href}
             onClick={(e) => scrollToSection(e, l.href)}
-            className="flex flex-col items-center gap-1 nav-link font-display text-[10px] uppercase font-bold tracking-widest whitespace-nowrap cursor-pointer"
+            className=" gap-1  flex flex-col items-center font-display text-[10px] uppercase font-bold tracking-widest whitespace-nowrap cursor-pointer"
             style={{ transition: "all 0.3s ease" }}
           >
             <p className="text-xl">{l.icon}</p>
@@ -459,7 +462,11 @@ export default function Portfolio() {
                     {big.includes("+") ? (
                       <CountUp to={parseInt(big)} suffix="+" duration={0.5} />
                     ) : big.includes("Yrs") ? (
-                      <CountUp to={parseInt(big)} suffix=" Yrs" duration={0.5} />
+                      <CountUp
+                        to={parseInt(big)}
+                        suffix=" Yrs"
+                        duration={0.5}
+                      />
                     ) : (
                       big
                     )}
@@ -477,8 +484,20 @@ export default function Portfolio() {
         </div>
       </StickySection>
 
+      <Marquee
+        text="CREATIVE FRONTEND DESIGN ANIMATION"
+        className="relative z-20 shadow-xl"
+      />
+
       {/* Experience / Leadership / Contact / Softwares */}
-      <StickySection id="info" className=" relative py-20 sm:py-28 z-20 scroll-mt-24 overflow-hidden" style={{ backgroundColor: "#F6EFE2", boxShadow: "0 -10px 30px rgba(0,0,0,0.05)" }}>
+      <StickySection
+        id="info"
+        className=" relative py-20 sm:py-28 z-20 scroll-mt-24 overflow-hidden"
+        style={{
+          backgroundColor: "#F6EFE2",
+          boxShadow: "0 -10px 30px rgba(0,0,0,0.05)",
+        }}
+      >
         <ParallaxShapes />
         <div className="max-w-6xl mx-auto px-6 sm:px-10 relative">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-10">
@@ -806,7 +825,7 @@ export default function Portfolio() {
               </span>
 
               <span className="pointer-events-none select-none flex items-center gap-2">
-                Built with  <GoHeartFill className="text-[18px]" />
+                Built with <GoHeartFill className="text-[18px]" />
               </span>
             </div>
           </div>

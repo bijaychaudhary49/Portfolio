@@ -14,10 +14,14 @@ export default function ParallaxShapes() {
   const r1 = useTransform(scrollYProgress, [0, 1], [0, 45]);
   const r2 = useTransform(scrollYProgress, [0, 1], [0, -90]);
 
+  const shiftColors = ["rgba(75,184,250,0.15)", "rgba(224,135,107,0.15)", "rgba(75,250,150,0.15)", "rgba(75,184,250,0.15)"];
+
   return (
     <div ref={ref} className="absolute inset-0 overflow-hidden pointer-events-none z-0">
       {/* Circle outline */}
       <motion.div
+        animate={{ borderColor: shiftColors }}
+        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
         style={{
           y: y1,
           x: "10vw",
@@ -25,13 +29,16 @@ export default function ParallaxShapes() {
           width: 120,
           height: 120,
           borderRadius: "50%",
-          border: "2px solid rgba(26,26,26,0.05)",
+          borderWidth: 2,
+          borderStyle: "solid",
           position: "absolute"
         }}
       />
       
       {/* Solid small circle */}
       <motion.div
+        animate={{ backgroundColor: shiftColors }}
+        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
         style={{
           y: y2,
           x: "85vw",
@@ -39,28 +46,15 @@ export default function ParallaxShapes() {
           width: 40,
           height: 40,
           borderRadius: "50%",
-          background: "rgba(75,184,250,0.1)",
           position: "absolute"
         }}
       />
 
-      {/* Cross */}
-      {/* <motion.div
-        style={{
-          y: y3,
-          rotate: r1,
-          x: "70vw",
-          top: "70%",
-          position: "absolute",
-          opacity: 0.2
-        }}
-      >
-        <div style={{ width: 30, height: 4, background: "#1A1A1A", position: "absolute", top: 13 }} />
-        <div style={{ width: 4, height: 30, background: "#1A1A1A", position: "absolute", left: 13 }} />
-      </motion.div> */}
-
+   
       {/* Square */}
       <motion.div
+        animate={{ borderColor: shiftColors }}
+        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
         style={{
           y: y1,
           rotate: r2,
@@ -68,7 +62,8 @@ export default function ParallaxShapes() {
           top: "80%",
           width: 60,
           height: 60,
-          border: "2px solid rgba(224,135,107,0.15)",
+          borderWidth: 2,
+          borderStyle: "solid",
           position: "absolute"
         }}
       />

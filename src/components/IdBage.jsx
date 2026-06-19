@@ -1,9 +1,10 @@
-/* ---------------------------------------------------------------------- */
-/* IdBadge — flat lanyard prop with abstract monogram instead of a photo    */
-/* ---------------------------------------------------------------------- */
+import { motion } from "framer-motion";
+import { useState } from "react";
 import Profile from "../assets/heroImage.png";
 
 export default function IdBadge() {
+  const [clickCount, setClickCount] = useState(0);
+
   return (
     <div
       className="hidden xl:block relative"
@@ -26,8 +27,21 @@ export default function IdBadge() {
       />
 
       {/* The ID Card Frame */}
-      <div
-        className="bkc-sway"
+      <motion.div
+        className="bkc-sway cursor-pointer"
+        onClick={() => setClickCount(c => c + 1)}
+        animate={{
+          rotate: [0, -15, 15, -10, 10, 0],
+          y: clickCount > 0 ? [0, -20, 0] : 0
+        }}
+        transition={{
+          duration: 0.5,
+          type: "spring",
+          stiffness: 300,
+          damping: 10
+        }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         style={{
           width: 220,
           margin: "0 auto",
@@ -36,6 +50,7 @@ export default function IdBadge() {
           borderRadius: 16,
           padding: "16px 12px 12px 12px",
           position: "relative",
+          transformOrigin: "top center"
         }}
       >
         {/* The Punch Hole / Clip Slot */}
@@ -96,7 +111,7 @@ export default function IdBadge() {
             />
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -38,43 +38,45 @@ html {
 .bkc-portfolio .btn-primary {
     background-color: #1A1A1A;
     color: #F6EFE2;
-    transition: background-color 0.25s ease, transform 0.25s ease;
+    transition: background-color 0.25s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .bkc-portfolio .btn-primary:hover {
     background-color: #4BB8FA;
     color: #1A1A1A;
-    transform: translateY(-2px);
+    transform: translateY(-4px) scale(1.05);
 }
 
 .bkc-portfolio .btn-outline {
     border: 2px solid #1A1A1A;
     color: #1A1A1A;
-    transition: background-color 0.25s ease, transform 0.25s ease;
+    transition: background-color 0.25s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .bkc-portfolio .btn-outline:hover {
     background-color: #1A1A1A;
     color: #F6EFE2;
-    transform: translateY(-2px);
+    transform: translateY(-4px) scale(1.05);
 }
 
 .bkc-portfolio .nav-link {
     color: #1A1A1A;
     opacity: 0.7;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: inline-block;
 }
 
 .bkc-portfolio .nav-link:hover {
     opacity: 1;
+    transform: translateY(-2px) scale(1.1);
 }
 
 .bkc-portfolio .soft-chip {
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
 }
 
 .bkc-portfolio .soft-chip:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px) scale(1.1) rotate(-3deg);
     background-color: #4BB8FA !important;
     color: #1A1A1A;
 }

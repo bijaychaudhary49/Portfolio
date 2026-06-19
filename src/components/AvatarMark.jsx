@@ -1,14 +1,31 @@
+import { motion } from "framer-motion";
+import { useState } from "react";
 import Profile from "../assets/heroImage.png";
-import Heart from "../assets/heart.png";
 
 /* ---------------------------------------------------------------------- */
 /* AvatarMark — abstract monogram blob, replaces a custom illustration      */
 /* ---------------------------------------------------------------------- */
 
 export default function AvatarMark() {
+  const [clickCount, setClickCount] = useState(0);
+
   return (
     <div className="relative h-75">
-      <div className="absolute max-md:-top-6 md:bottom-0 left-1/2 -translate-x-1/2 mx-auto w-xl h-90 md:h-100">
+      <motion.div
+        className="absolute max-md:-top-6 md:bottom-0 left-1/2 -translate-x-1/2 mx-auto w-xl h-90 md:h-100 cursor-pointer"
+        onClick={() => setClickCount((c) => c + 1)}
+        animate={{
+          rotate: clickCount * 360,
+          scale: [1, 1.1, 1]
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 10
+        }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.9 }}
+      >
         <img
           src={Profile}
           alt="Profile"
@@ -62,7 +79,7 @@ export default function AvatarMark() {
         >
           +
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

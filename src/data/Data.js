@@ -97,7 +97,7 @@ const DATA = {
       stack: ["SPA", "Vercel"],
       bg: "#E0876B",
       text: "#F6EFE2",
-      link: "e-learning-eight-chi.vercel.app",
+      link: "https://e-learning-eight-chi.vercel.app",
     },
     {
       n: "05",

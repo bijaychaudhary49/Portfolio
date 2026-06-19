@@ -664,7 +664,7 @@ export default function Portfolio() {
       {/* Projects */}
       <StickySection
         id="work"
-        className="pt-20 sm:py-24 z-40 scroll-mt-24"
+        className="py-20 sm:py-24 z-40 scroll-mt-24"
         style={{
           backgroundColor: "#F6EFE2",
           boxShadow: "0 -10px 30px rgba(0,0,0,0.05)",
@@ -682,7 +682,7 @@ export default function Portfolio() {
 
       {/* Education */}
       <StickySection
-        className=" pt-20 sm:pt-24 z-50 scroll-mt-24 overflow-hidden relative"
+        className=" pt-20 sm:pt-24 scroll-mt-24 overflow-hidden relative"
         style={{
           backgroundColor: "#D9CBA6",
           boxShadow: "0 -10px 30px rgba(0,0,0,0.05)",
@@ -795,7 +795,7 @@ export default function Portfolio() {
               </div>
             </Reveal>
             <div
-              className="flex flex-col sm:flex-row justify-between gap-2 pt-8 pb-16 font-display text-xs"
+              className="flex items-center flex-col sm:flex-row justify-center sm:justify-between gap-2 pt-8 pb-20 md:pb-16 font-display text-xs"
               style={{
                 borderTop: "1px solid rgba(246,239,226,0.15)",
                 color: "rgba(246,239,226)",

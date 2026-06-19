@@ -1,52 +1,54 @@
-/* ---------------------------------------------------------------------- */
-/* Reveal — fade + rise on scroll into view                                 */
-/* ---------------------------------------------------------------------- */
+import { motion } from "framer-motion";
 
-import { useEffect, useRef, useState } from "react";
-
-function Reveal({ children, className = "", delay = 0 }) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduced) {
-      setVisible(true);
-      return;
+function Reveal({ children, className = "", delay = 0, variant = "up" }) {
+  const variants = {
+    up: {
+      hidden: { opacity: 0, y: 50 },
+      visible: { opacity: 1, y: 0 }
+    },
+    left: {
+      hidden: { opacity: 0, x: -50 },
+      visible: { opacity: 1, x: 0 }
+    },
+    right: {
+      hidden: { opacity: 0, x: 50 },
+      visible: { opacity: 1, x: 0 }
+    },
+    blur: {
+      hidden: { opacity: 0, filter: "blur(10px)", scale: 0.95 },
+      visible: { opacity: 1, filter: "blur(0px)", scale: 1 }
+    },
+    scale: {
+      hidden: { opacity: 0, scale: 0.8 },
+      visible: { opacity: 1, scale: 1 }
     }
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            obs.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
+  };
+
+  const selectedVariant = variants[variant] || variants.up;
 
   return (
-    <div
-      ref={ref}
+    <motion.div
       className={className}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0px)" : "translateY(22px)",
-        transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}s, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
-        willChange: "opacity, transform",
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.15 }}
+      variants={{
+        hidden: selectedVariant.hidden,
+        visible: {
+          ...selectedVariant.visible,
+          transition: {
+            duration: 0.8,
+            delay: delay,
+            type: "spring",
+            stiffness: 100,
+            damping: 20
+          }
+        }
       }}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 
-export default Reveal
+export default Reveal;

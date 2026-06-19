@@ -4,6 +4,7 @@
 import { FaExternalLinkAlt } from "react-icons/fa";
 import DATA from "../data/Data"
 import Reveal from "./Reveal";
+import StaggeredTags from "./StaggeredTags";
 import { useRef, useState } from "react";
 
 function ProjectTile({ project, index }) {
@@ -133,7 +134,7 @@ function ProjectTile({ project, index }) {
           <p className="text-sm leading-relaxed mb-4 opacity-90">
             {project.desc}
           </p>
-          <div className="flex flex-wrap gap-2">
+          <StaggeredTags className="flex flex-wrap gap-2">
             {project.stack.map((s) => (
               <span
                 key={s}
@@ -143,7 +144,7 @@ function ProjectTile({ project, index }) {
                 {s}
               </span>
             ))}
-          </div>
+          </StaggeredTags>
         </div>
       </div>
     </Reveal>

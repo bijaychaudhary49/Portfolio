@@ -17,7 +17,6 @@ export default function AvatarMark() {
             objectFit: "contain", // Change to "cover" if you don't want empty spaces around the image
             objectPosition: "center",
             display: "block",
-            cursor: `url(${Heart}) 16 16, auto`,
           }}
         />
 

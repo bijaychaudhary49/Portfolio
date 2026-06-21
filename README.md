@@ -1,4 +1,4 @@
-# Bijay Kumar Chaudhary — Portfolio
+# Bijay Kumar Chaudhary - Portfolio
 
 A modern portfolio website showcasing projects, experience, and design skills.
 
